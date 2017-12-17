@@ -10,18 +10,17 @@ public class Task3Array {
         System.out.println("Task 3a: " + globoforceString);
         char[] charArray = globoforceString.toCharArray();
         System.out.println("Task 3b: Array length is " + charArray.length + " characters");
-        char[] str = globoforceString.toCharArray();
-        replaceString(str);
+        replaceString(charArray);
     }
 
-    public static void replaceString(char[] str) {
-        int length = str.length;
+    public static void replaceString(char[] charArray) {
+        int length = charArray.length;
         for (int i = 0; i < length; i++) {
-            if (str[i] == 'b') {
-                str[i] = '$';
+            if (charArray[i] == 'b') {
+                charArray[i] = '$';
             }
         }
-        System.out.println("Task 3c: " + String.valueOf(str));
+        System.out.println("Task 3c: " + String.valueOf(charArray));
     }
 
 }
