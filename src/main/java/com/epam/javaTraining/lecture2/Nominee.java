@@ -5,26 +5,15 @@ package com.epam.javaTraining;
  */
 public class Nominee {
     private String name;
-
     public Nominee(String name) {
         this.name = name;
     }
-
     public String getName() {
         return name;
     }
 
-  //  Nominee nominee = new Nominee("John");
-
-    public static void receiveAward(Award award) {
+    public void receiveAward(Award award) {
         System.out.println(award.getValue());
-
-
-//    }
-//static {
-//    System.out.println(Nominee.name);
-//}
-
+    }
 
     }
-}
