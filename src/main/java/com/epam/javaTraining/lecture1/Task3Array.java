@@ -1,4 +1,4 @@
-package com.epam.javaTraining;
+package com.epam.javaTraining.lecture1;
 
 /**
  * Created by Viachaslau_Kavaliou on 13/12/2017.
