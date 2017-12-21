@@ -6,7 +6,6 @@ package com.epam.javaTraining.lecture2;
 public class Award {
     private final int value;
     private float soli;
-    private float loss;
 
     public Award(Integer value) {
         this.value = value;
