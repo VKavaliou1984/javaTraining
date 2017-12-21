@@ -16,7 +16,6 @@ public class Nominee {
         counter++;
     }
 
-
     public String getName() {
         return name;
     }
@@ -26,10 +25,10 @@ public class Nominee {
             System.out.println("Nominee is " + name + ". Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
         } else {
             System.out.println("Nominee is " + name + ". SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
-            x = (z *z * award.getValue()) * (1 - award.getValue()) / (c *c);
+            x = (z * z * award.getValue()) * (1 - award.getValue()) / (c * c);
             quantity = x / ((1 + (x - 1) / counter));
             System.out.println("Quantity = " + quantity);
-            System.out.println("FYI: x=" + x + " Award value is " + award.getValue());
+            System.out.println("FYI: x=" + x);
         }
     }
 
