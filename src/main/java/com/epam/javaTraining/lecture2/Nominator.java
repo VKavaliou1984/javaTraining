@@ -10,10 +10,14 @@ public class Nominator {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
 
     public void nominate(Award award, Nominee nominee) {
-        System.out.println(this.name + " " + award.getValue() + " " + nominee.getName());
+        System.out.println("Nominator is " + this.name);
         nominee.receiveAward(award);
+        System.out.println();
     }
 
 }
