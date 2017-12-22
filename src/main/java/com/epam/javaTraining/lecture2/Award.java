@@ -7,6 +7,10 @@ public class Award {
     private final int value;
     private float soli;
 
+ static {
+        System.out.println("Hello from Award class");
+    }
+
     public Award(Integer value) {
         this.value = value;
     }
@@ -23,8 +27,10 @@ public class Award {
         return soli;
     }
 
-    static {
-        System.out.println("Award class");
-    }
+//    public void nomineeAwardsWithoutSoli(Award award, Nominee nominee) {
+//        if (award.getSoli() < 1) {
+//            counter++;
+//        }
+//    }
 }
 

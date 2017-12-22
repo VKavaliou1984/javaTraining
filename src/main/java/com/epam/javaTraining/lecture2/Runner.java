@@ -4,11 +4,16 @@ package com.epam.javaTraining.lecture2;
  * Created by Viachaslau_Kavaliou on 18/12/2017.
  */
 public class Runner {
+
+    static {
+        System.out.println("Hello from Runner class");
+    }
+
     public static void main(String[] args) {
         Nominee nominee1 = new Nominee("Jack");
         Nominee nominee2 = new Nominee("Siarhei");
         Nominee nominee3 = new Nominee("Stephen");
-        System.out.println("Total amount of nominees (population) is " + Nominee.counter);
+       // System.out.println("Total amount of nominees (population) is " + Nominee.counter);
         Award award1 = new Award(2000);
         Award award2 = new Award(50);
         Award award3 = new Award(100);

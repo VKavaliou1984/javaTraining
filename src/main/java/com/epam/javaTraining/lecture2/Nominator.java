@@ -6,6 +6,10 @@ package com.epam.javaTraining.lecture2;
 public class Nominator {
     private String name;
 
+    static {
+        System.out.println("Hello from Nominator class");
+    }
+
     public Nominator(String name) {
         this.name = name;
     }
