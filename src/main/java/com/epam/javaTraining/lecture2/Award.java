@@ -6,13 +6,20 @@ package com.epam.javaTraining.lecture2;
 public class Award {
     private final int value;
     private float soli;
+    public int counter;
 
- static {
+    static {
         System.out.println("Hello from Award class");
     }
 
     public Award(Integer value) {
         this.value = value;
+        counter++;
+    }
+
+    public Award(Integer value, Float soli) {
+        this.value = value;
+        this.soli = soli;
     }
 
     public int getValue() {
@@ -27,10 +34,15 @@ public class Award {
         return soli;
     }
 
-//    public void nomineeAwardsWithoutSoli(Award award, Nominee nominee) {
-//        if (award.getSoli() < 1) {
-//            counter++;
+//    public int count () {
+//        int i; int count = 0;
+//        for (i = 0; i < counter; i++)
+//        if (getSoli()<=0) {
+//            count++;
 //        }
+//        return count;
 //    }
 }
+
+
 
