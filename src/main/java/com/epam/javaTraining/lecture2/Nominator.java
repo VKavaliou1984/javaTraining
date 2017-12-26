@@ -38,8 +38,9 @@ public class Nominator {
         this.nominatorAwardAmountLimit = nominatorAwardAmountLimit;
     }
 
+
     public void nominate(Award award, Nominee nominee) {
-        float nominatorAwardsAmount = 0;
+//        float nominatorAwardsAmount = 0;
         System.out.println("Nominator is " + this.name + ". Max award value is " + this.nominatorAwardAmountLimit + ". Limit of awards is " + this.nominatorAwardQuantityLimit + " items");
 //        while (this.nominatorAwardAmountLimit < nominatorAwardsAmount) {
 //            nominee.receiveAward(award);
@@ -53,6 +54,10 @@ public class Nominator {
 //        else {
             nominee.receiveAward(award);
 //        }
+    }
+
+    public void nominate1(Award award, Nominee nominee) {
+        nominee.receiveAward1(award);
     }
 }
 

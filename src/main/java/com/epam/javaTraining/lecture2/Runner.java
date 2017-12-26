@@ -27,7 +27,7 @@ public class Runner {
         System.out.println("nominator limit is " + nominator1.getNominatorAwardQuantityLimit());
 
         for (int i=0; i<nominator1.getNominatorAwardQuantityLimit();i++){
-            nominator1.nominate(award1, nominee1);
+            nominator1.nominate1(award1, nominee1);
             System.out.println(i + "test" + award1.getValue());
         }
         System.out.println("The limit of awards has been reached for the nominator");

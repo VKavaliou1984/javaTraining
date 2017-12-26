@@ -86,5 +86,8 @@ public class Nominee {
             System.out.println("FYI: x=" + x + ", c=" + c + ", z=" + z);
         }
     }
+
+    public void receiveAward1(Award award) {
+            }
 }
 
