@@ -69,7 +69,7 @@ public class Nominee {
 
 
             //if (award.getValue() >= this.getNomineeAwardAmountLimit())
-            while (restOfAwards > 0) {
+//            while (restOfAwards > 0) {
                 array.add(award);
                 int population = getPopulation();
                 double quantity = 0, x = 0;
@@ -82,8 +82,8 @@ public class Nominee {
                     System.out.println("Quantity = " + quantity);
                     System.out.println("FYI: x=" + x + ", c=" + c + ", z=" + z + " " + population);
                 }
-                break;
-            }
+//                break;
+//            }
 
         }
 
