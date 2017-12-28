@@ -53,40 +53,39 @@ public class Nominee {
         this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
     }
 
-        public void receiveAward(Award award) {
-            int restOfAwards = getRestOfNomineesAwards();
-            switch (restOfAwards) {
-                case 0:
-                    System.out.println(this.getName() + " isn't able to receive any awards");
-                    break;
-                case 1:
-                    System.out.println(this.getName() + " is able to receive only 1 award");
-                    break;
-                default:
-                    System.out.println(this.getName() + " is able to receive " + restOfAwards + " awards");
-                    break;
-            }
-
-
-            //if (award.getValue() >= this.getNomineeAwardAmountLimit())
-//            while (restOfAwards > 0) {
-                array.add(award);
-                int population = getPopulation();
-                double quantity = 0, x = 0;
-                if (award.getSoli() > 0) {
-                    System.out.println("Nominee is " + name + ". Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
-                } else {
-                    System.out.println("Nominee is " + name + ". SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
-                    x = ((z * z * award.getValue()) * (1 - award.getValue())) / (population);
-                    quantity = x / ((1 + ((x - 1) / population)));
-                    System.out.println("Quantity = " + quantity);
-                    System.out.println("FYI: x=" + x + ", c=" + c + ", z=" + z + " " + population);
-                }
-//                break;
-//            }
-
+    public void receiveAward(Award award) {
+        int restOfAwards = getRestOfNomineesAwards();
+        switch (restOfAwards) {
+            case 0:
+                System.out.println(this.getName() + " isn't able to receive any awards");
+                break;
+            case 1:
+                System.out.println(this.getName() + " is able to receive only 1 award");
+                break;
+            default:
+                System.out.println(this.getName() + " is able to receive " + restOfAwards + " awards");
+                break;
         }
-
+        if (restOfAwards > 0 && nomineeAwardAmountLimit >= award.getValue()) {
+            array.add(award);
+            int population = getPopulation();
+            double quantity = 0, x = 0;
+            if (award.getSoli() > 0) {
+                System.out.println("Nominee is " + name + "\n" + "Nominee's balance is " + nomineeAwardAmountLimit + "\n" + "Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
+            } else {
+                System.out.println("Nominee is " + name + "\n" + "Nominee's balance is " + nomineeAwardAmountLimit + "\n" + "SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
+                x = ((z * z * award.getValue()) * (1 - award.getValue())) / (population);
+                quantity = x / ((1 + ((x - 1) / population)));
+                System.out.println("Quantity = " + quantity);
+                System.out.println("FYI: x=" + x + ", c=" + c + ", z=" + z + " " + population);
+            }
+        } else if (restOfAwards > 0 && nomineeAwardAmountLimit < award.getValue()) {
+            System.out.println("It's impossible to create an award that has value " + award.getValue() + " USD (more than nominee's balance)");
+        } else {
+            System.out.println("Award wasn't created due to reaching limit for the recipient");
+        }
+        nomineeAwardAmountLimit -= award.getValue();
+    }
 
     private int getPopulation() {
         int population = 0;
@@ -95,22 +94,26 @@ public class Nominee {
             if (award.getSoli() <= 0) {
                 population++;
             }
-
         }
         return population;
     }
 
-    private int getRestOfNomineesAwards (){
+    private int getRestOfNomineesAwards() {
         int restOfAwards = this.nomineeAwardQuantityLimit;
-        for (Award award: array) {
-            restOfAwards--;
+        for (Award award : array) {
+            if (restOfAwards > 0) {
+                restOfAwards--;
+            }
         }
-    return restOfAwards;
+        return restOfAwards;
     }
 
-
-
-    public void receiveAward1(Award award) {
-    }
+//    public boolean canBeNominated (Award award) {
+//        boolean w=false;
+//        if (nomineeAwardAmountLimit >0 && nomineeAwardQuantityLimit >award.getValue()) {
+//            w=true;
+//        }
+//    return w;
+//    }
 }
 

@@ -16,14 +16,16 @@ public class Runner {
         Award award1 = new Award(2000, 1700f);
         Award award2 = new Award(50, 0f);
         Award award3 = new Award(100);
-        Nominator nominator1 = new Nominator("John", 3000.0f, 3);
-        Nominator nominator2 = new Nominator("Aleh", 1000.0f, 2);
-        nominator1.nominate(award1, nominee1);
-        nominator2.nominate(award1, nominee1);
-        nominator1.nominate(award3, nominee1);
-        nominator2.nominate(award1, nominee1);
-        nominator2.nominate(award2, nominee1);
-        nominator1.nominate(award2, nominee1);
+        Nominator nominator1 = new Nominator("John", 3000.0f, 6);
+        Nominator nominator2 = new Nominator("Aleh", 100.0f, 2);
+        nominator1.nominate(award1, nominee3);
+        nominator2.nominate(award2, nominee3);
+        nominator2.nominate(award3, nominee3);
+        nominator2.nominate(award1, nominee3);
+        nominator1.nominate(award2, nominee3);
+        nominator1.nominate(award2, nominee3);
+        nominator1.nominate(award3, nominee3);
+        nominator1.nominate(award2, nominee3);
 
 //        for (int i =1; i< nominator1.getNominatorAwardQuantityLimit(); i++) {
 //            nominator1.nominate1(award1, nominee1);
