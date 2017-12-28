@@ -64,7 +64,8 @@ public class Nominator {
 //                    break;
 //            }
         System.out.println("---------------Attempt to give award # " + count + " by nominator " + getName() + " ---------------");
-        if (nominatorAwardQuantityLimit > 0 && nominatorAwardAmountLimit >= award.getValue()) {
+        System.out.println(nominee.canBeNominated(award));
+        if (nominatorAwardQuantityLimit > 0 && nominatorAwardAmountLimit >= award.getValue() && nominee.canBeNominated(award)) {
             nominee.receiveAward(award);
             nominatorAwardQuantityLimit--;
             nominatorAwardAmountLimit -= award.getValue();
