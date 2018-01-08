@@ -1,22 +1,23 @@
-package com.epam.javaTraining.lecture2;
+package com.epam.javaTraining.globoforceTestProject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Created by Viachaslau_Kavaliou on 17/12/2017.
+ * @author Viachaslau_Kavaliou
+ * @version 1.0, 17-DEC-2017
  */
 public class Nominee {
     private String name;
-    private int nomineeAwardQuantityLimit;
-    private float nomineeAwardAmountLimit;
+    private int nomineeAwardQuantityLimit = 5;
+    private float nomineeAwardAmountLimit = 1000f;
     private ArrayList<Award> array = new ArrayList<Award>();
     private final double c;
     private final int z;
 
     static {
-        System.out.println("Hello from Nominee class");
+          String value = String.format("Hello from Nominee class");
+                System.out.println(value);
     }
 
     {
@@ -25,7 +26,12 @@ public class Nominee {
         z = rand.nextInt(10);
     }
 
-
+    /**
+     *
+     * @param name nominee's name
+     * @param nomineeAwardAmountLimit award amount limit for nominee
+     * @param nomineeAwardQuantityLimit award quantity limit for nominee (how many award can be received by nominee)
+     */
     public Nominee(String name, float nomineeAwardAmountLimit, int nomineeAwardQuantityLimit) {
         this.name = name;
         this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
@@ -53,6 +59,21 @@ public class Nominee {
         this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
     }
 
+    /**
+     * Method 'recieveAward' defines whether nominee is able to receive an award or not according to his own award quantity (nomineeAwardQuantityLimit) and award amount limit (nomineeAwardAmountLimit).
+     * Every successfully received award reduces this limit.
+     * If award doesn't have soli, appropriate message displays
+     * If award has soli, quantity indicator is calculated:
+     * quantity = ((Z^2*(P)*(1-P))/(C^2)) / (1 + ((((Z^2*(P)*(1-P ))/(C^2))-1)/population))
+     * where:
+     * C = a random decimal
+     * population = total count of employee's awards without soli
+     * Z = a random whole number
+     * P = award value
+     * -----------------------
+     * If any of nominee's limits (award quantity or award amount) doesn't allow to receive an award, appropriate error message displays
+     * @param award award that nominator is going to give to nominee
+     */
     public void receiveAward(Award award) {
         switch (nomineeAwardQuantityLimit) {
             case 0:
@@ -87,6 +108,10 @@ public class Nominee {
         }
     }
 
+    /**
+     * Method "getPopulation" calculated amount of awards without soli after each successfully given award for the nominee
+     * @return  amount of awards without soli
+     */
     private int getPopulation() {
         int population = 0;
         for (Award award : array) {
@@ -108,7 +133,12 @@ public class Nominee {
 //        return restOfAwards;
 //    }
 
-public boolean canBeNominated (Award award) {
+    /**
+     * Method 'canBeNominated' defines whether nominee is able to receive the award or not
+     * @param award award that nominator is going to five to nominee
+     * @return true if nominee's balance is higher than award value and award quantity limit
+     */
+    public boolean canBeNominated (Award award) {
         if (nomineeAwardQuantityLimit >0 && nomineeAwardAmountLimit >=award.getValue()) {
             return true;
         }

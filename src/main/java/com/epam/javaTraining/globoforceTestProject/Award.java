@@ -1,7 +1,8 @@
-package com.epam.javaTraining.lecture2;
+package com.epam.javaTraining.globoforceTestProject;
 
 /**
- * Created by Viachaslau_Kavaliou on 17/12/2017.
+ * @author Viachaslau_Kavaliou
+ * @version 1.0, 17-DEC-2017
  */
 public class Award {
     private final int value;
@@ -42,15 +43,6 @@ public class Award {
     public float getSoli() {
         return soli;
     }
-
-//    public int count () {
-//        int i; int count = 0;
-//        for (i = 0; i < counter; i++)
-//        if (getSoli()<=0) {
-//            count++;
-//        }
-//        return count;
-//    }
 }
 
 
