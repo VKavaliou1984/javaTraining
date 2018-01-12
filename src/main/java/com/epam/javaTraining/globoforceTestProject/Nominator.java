@@ -5,10 +5,10 @@ package com.epam.javaTraining.globoforceTestProject;
  * @version 1.0, 17-DEC-2017
  */
 
-public class Nominator {
-    private String name;
-    private int nominatorAwardQuantityLimit = 5;
-    private float nominatorAwardAmountLimit = 10000f;
+public class Nominator extends Person {
+//    private String name;
+//    private int nominatorAwardQuantityLimit = 5;
+//    private float nominatorAwardAmountLimit = 10000f;
     private int count = 1;
 
 
@@ -18,7 +18,7 @@ public class Nominator {
      * @param name nominator's name
      */
     public Nominator(String name) {
-        this.setName(name);
+        super(name);
         getNominatorParams();
     }
 
@@ -29,10 +29,8 @@ public class Nominator {
      * @param nominatorAwardAmountLimit   award amount limit for nominator
      * @param nominatorAwardQuantityLimit award quantity limit for nominator (how many award can be given by nominator)
      */
-    public Nominator(String name, float nominatorAwardAmountLimit, int nominatorAwardQuantityLimit) {
-        this.setName(name);
-        this.setNominatorAwardAmountLimit(nominatorAwardAmountLimit);
-        this.setNominatorAwardQuantityLimit(nominatorAwardQuantityLimit);
+    public Nominator(String name, int nominatorAwardQuantityLimit, float nominatorAwardAmountLimit) {
+        super(name,nominatorAwardQuantityLimit,nominatorAwardAmountLimit);
         getNominatorParams();
     }
 
@@ -70,33 +68,9 @@ public class Nominator {
     public String toString() {
         return "Nominator{" +
                 "name='" + getName() + '\'' +
-                ", nominatorAwardQuantityLimit=" + getNominatorAwardQuantityLimit() +
-                ", nominatorAwardAmountLimit=" + getNominatorAwardAmountLimit() +
+                ", nominatorAwardQuantityLimit=" + getAwardQuantityLimit() +
+                ", nominatorAwardAmountLimit=" + getAwardAmountLimit() +
                 '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
-
-    private int getNominatorAwardQuantityLimit() {
-        return nominatorAwardQuantityLimit;
-    }
-
-    private void setNominatorAwardQuantityLimit(int nominatorAwardQuantityLimit) {
-        this.nominatorAwardQuantityLimit = nominatorAwardQuantityLimit;
-    }
-
-    private float getNominatorAwardAmountLimit() {
-        return nominatorAwardAmountLimit;
-    }
-
-    private void setNominatorAwardAmountLimit(float nominatorAwardAmountLimit) {
-        this.nominatorAwardAmountLimit = nominatorAwardAmountLimit;
     }
 
     private int getCount() {
@@ -122,19 +96,24 @@ public class Nominator {
      * @param award   - award that nominator is going to give to nominee
      * @param nominee - nominee whom nominator wants to recognize
      */
+
+
+
     public void nominate(Award award, Nominee nominee) {
         System.out.println("---------------Attempt to give award # " + getCount() + " by nominator " + getName() + " ---------------");
+        System.out.println(isEligible(award.getValue(),getAwardQuantityLimit(),getAwardQuantityLimit()));
         System.out.println(nominee.canBeNominated(award));
-        if (getNominatorAwardQuantityLimit() > 0 && getNominatorAwardAmountLimit() >= award.getValue() && nominee.canBeNominated(award)) {
+        //if (getNominatorAwardQuantityLimit() > 0 && getNominatorAwardAmountLimit() >= award.getValue() && nominee.canBeNominated(award)) {
+        if (isEligible(award.getValue(), getAwardQuantityLimit(),getAwardAmountLimit()) == true && isEligible(award.getValue(),nominee.getAwardQuantityLimit(),nominee.getAwardAmountLimit()) == true) {
             nominee.receiveAward(award);
-            setNominatorAwardQuantityLimit(getNominatorAwardQuantityLimit() - 1);
-            setNominatorAwardAmountLimit(getNominatorAwardAmountLimit() - award.getValue());
+            setAwardQuantityLimit(getAwardQuantityLimit() - 1);
+            setAwardAmountLimit(getAwardAmountLimit() - award.getValue());
             printRestOfAwards();
             printBalance();
-        } else if (getNominatorAwardQuantityLimit() > 0 && getNominatorAwardAmountLimit() < award.getValue()) {
+        } else if (getAwardQuantityLimit() > 0 && getAwardAmountLimit() < award.getValue()) {
             System.out.println("It's impossible to create an award that has value " + award.getValue() + " USD (more than nominator's balance)");
             System.out.println("================================================");
-        } else if (getNominatorAwardQuantityLimit() <= 0 && getNominatorAwardAmountLimit() >= award.getValue()) {
+        } else if (getAwardQuantityLimit() <= 0 && getAwardAmountLimit() >= award.getValue()) {
             System.out.println("Regardless nominator's balance allows to give awards, he has already reached his own limit of awards.");
         } else {
             System.out.println(this.getName() + " hasn't been able to give any awards yet");
@@ -146,14 +125,14 @@ public class Nominator {
      * Method 'printRestOfAwards' displays information message how many awards nominator is able to give after the last successful placement an award
      */
     private void printRestOfAwards() {
-        System.out.println(this.getName() + " is able to give " + getNominatorAwardQuantityLimit() + " awards");
+        System.out.println(this.getName() + " is able to give " + getAwardQuantityLimit() + " awards");
     }
 
     /**
      * Method 'printBalance' displays information message about nominator's balance (amount that the nominator is able to use for giving awards)
      */
     private void printBalance() {
-        System.out.println("Balance is " + getNominatorAwardAmountLimit() + " USD");
+        System.out.println("Balance is " + getAwardAmountLimit() + " USD");
         System.out.println("================================================");
     }
 }
