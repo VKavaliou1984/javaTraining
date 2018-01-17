@@ -10,7 +10,7 @@ import java.util.Random;
 public class Nominee extends Person {
 //    private String name;
 //    private int nomineeAwardQuantityLimit = 5;
-//    private float nomineeAwardAmountLimit = 1000f;
+    private float nomineeAwardAmountLimit = 1000f;
     String value;
     private final double c;
     private final int z;
@@ -28,6 +28,14 @@ public class Nominee extends Person {
     }
 
     /**
+     * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award amount limit has specific default value for nominees)
+     * @param name nominee's name
+     */
+    public Nominee (String name) {
+        super (name);
+    }
+
+    /**
      * @param name                      nominee's name
      * @param nomineeAwardAmountLimit   award amount limit for nominee
      * @param nomineeAwardQuantityLimit award quantity limit for nominee (how many award can be received by nominee)
@@ -35,6 +43,17 @@ public class Nominee extends Person {
 
     public Nominee(String name, int nomineeAwardQuantityLimit, float nomineeAwardAmountLimit) {
         super(name, nomineeAwardQuantityLimit, nomineeAwardAmountLimit);
+        this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
+    }
+
+    @Override
+    public float getAwardAmountLimit() {
+        return nomineeAwardAmountLimit;
+    }
+
+    @Override
+    public void setAwardAmountLimit(float nomineeAwardAmountLimit) {
+        this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
     }
 
     /**

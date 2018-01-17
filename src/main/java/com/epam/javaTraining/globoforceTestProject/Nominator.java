@@ -6,14 +6,13 @@ package com.epam.javaTraining.globoforceTestProject;
  */
 
 public class Nominator extends Person {
-//    private String name;
-//    private int nominatorAwardQuantityLimit = 5;
-//    private float nominatorAwardAmountLimit = 10000f;
+    private int nominatorAwardQuantityLimit = 5;
+    private float nominatorAwardAmountLimit = 10000f;
     private int count = 1;
 
 
     /**
-     * Default constructor is used if award quantity (nominatorAwardQuantityLimit) and award amount limit (nominatorAwardAmountLimit) for nominator are default
+     * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award quantity limit has specific default value for nominators)
      *
      * @param name nominator's name
      */
@@ -23,18 +22,37 @@ public class Nominator extends Person {
     }
 
     /**
-     * Used if award quantity (nominatorAwardQuantityLimit) and award amount limit (nominatorAwardAmountLimit) for nominator are set by user
+     * Used if award quantity (nominatorAwardQuantityLimit) and award amount (nominatorAwardAmountLimit) limits for nominator are set by user
      *
      * @param name                        nominator's name
      * @param nominatorAwardAmountLimit   award amount limit for nominator
-     * @param nominatorAwardQuantityLimit award quantity limit for nominator (how many award can be given by nominator)
+     * @param nominatorAwardQuantityLimit award quantity limit for nominator
      */
     public Nominator(String name, int nominatorAwardQuantityLimit, float nominatorAwardAmountLimit) {
-        super(name,nominatorAwardQuantityLimit,nominatorAwardAmountLimit);
+        super(name, nominatorAwardQuantityLimit, nominatorAwardAmountLimit);
+        this.nominatorAwardQuantityLimit = nominatorAwardQuantityLimit;
         getNominatorParams();
     }
 
-    //    public Nominator(String name, float nominatorAwardAmountLimit, int nominatorAwardQuantityLimit) {
+    /**
+     * Method getAwardQuantityLimit is overridden due to specific default award quantity limit set for nominators
+     * @return returns award quantity limit for nominator (default value is used from Nominator class in case if it's not set by user)
+     */
+    @Override
+    public int getAwardQuantityLimit() {
+        return nominatorAwardQuantityLimit;
+    }
+
+    /**
+     * Method setAwardQuantityLimit is overridden due to specific default award quantity limit set for nominators
+     * @param nominatorAwardQuantityLimit award quantity limit for nominator
+     */
+    @Override
+    public void setAwardQuantityLimit(int nominatorAwardQuantityLimit) {
+        this.nominatorAwardQuantityLimit = nominatorAwardQuantityLimit;
+    }
+
+//    public Nominator(String name, float nominatorAwardAmountLimit, int nominatorAwardQuantityLimit) {
 //        this.name = name;
 //        setNominatorAwardAmountLimit(nominatorAwardAmountLimit);
 //        setNominatorAwardQuantityLimit(nominatorAwardQuantityLimit);
@@ -97,14 +115,12 @@ public class Nominator extends Person {
      * @param nominee - nominee whom nominator wants to recognize
      */
 
-
-
     public void nominate(Award award, Nominee nominee) {
         System.out.println("---------------Attempt to give award # " + getCount() + " by nominator " + getName() + " ---------------");
         System.out.println(isEligible(award.getValue(),getAwardQuantityLimit(),getAwardQuantityLimit()));
         System.out.println(nominee.canBeNominated(award));
         //if (getNominatorAwardQuantityLimit() > 0 && getNominatorAwardAmountLimit() >= award.getValue() && nominee.canBeNominated(award)) {
-        if (isEligible(award.getValue(), getAwardQuantityLimit(),getAwardAmountLimit()) == true && isEligible(award.getValue(),nominee.getAwardQuantityLimit(),nominee.getAwardAmountLimit()) == true) {
+        if (super.isEligible(award.getValue(), getAwardQuantityLimit(),getAwardAmountLimit()) == true && isEligible(award.getValue(),nominee.getAwardQuantityLimit(),nominee.getAwardAmountLimit()) == true) {
             nominee.receiveAward(award);
             setAwardQuantityLimit(getAwardQuantityLimit() - 1);
             setAwardAmountLimit(getAwardAmountLimit() - award.getValue());

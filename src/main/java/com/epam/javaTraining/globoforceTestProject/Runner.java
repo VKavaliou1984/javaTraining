@@ -15,14 +15,13 @@ public class Runner {
      * @param args array of String objects
      */
     public static void main(String[] args) {
-        Nominee nominee1 = new Nominee("Jack", 2, 50000.0f);
+        Nominee nominee1 = new Nominee("Erin");
         Nominee nominee2 = new Nominee("Siarhei", 3, 100000.0f);
         Nominee nominee3 = new Nominee("Stephen", 5, 20000.0f);
-        Person person1 = new Person("Jak", 5, 100f);
         Award award1 = new Award(2000);
         Award award2 = new Award(50);
         Award award3 = new Award(100);
-        Nominator nominator1 = new Nominator("John", 6, 30000.0f);
+        Nominator nominator1 = new Nominator("John");
         Nominator nominator2 = new Nominator("Aleh", 2, 10000.0f);
         Nominator nominator3 = new Nominator("Jack");
         nominator3.toString();nominator3.nominate(award1, nominee3);

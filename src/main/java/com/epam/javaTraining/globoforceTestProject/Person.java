@@ -1,9 +1,9 @@
 package com.epam.javaTraining.globoforceTestProject;
 
-public class Person {
+public abstract class Person {
     private String name;
-    private int awardQuantityLimit = 5;
-    private float awardAmountLimit = 1000f;
+    private int awardQuantityLimit = 10;
+    private float awardAmountLimit = 2000f;
 
     public Person(String name, int awardQuantityLimit, float awardAmountLimit) {
         this.name = name;
