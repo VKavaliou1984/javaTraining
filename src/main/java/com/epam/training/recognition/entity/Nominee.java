@@ -1,4 +1,6 @@
-package com.epam.javaTraining.globoforceTestProject;
+package com.epam.training.recognition.entity;
+
+import com.epam.training.recognition.service.NominationHelper;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -10,14 +12,17 @@ import java.util.Random;
 public class Nominee extends Person {
 //    private String name;
 //    private int nomineeAwardQuantityLimit = 5;
-    private float nomineeAwardAmountLimit = 1000f;
+//    private float nomineeAwardAmountLimit = 1000f;
+//    private static final int NOMINEE_AWARD_AMOUNT_LIMIT = 10;
+//    private static final int NOMINEE_AWARD_QUANTITY_LIMIT = 10;
+
     String value;
     private final double c;
     private final int z;
-    private ArrayList<Award> array = new ArrayList<Award>();
+    public ArrayList<Award> array = new ArrayList<Award>();
 
     static {
-        String value = String.format("Hello from Nominee class");
+        String value = String.format("Hello  from Nominee  class", "some1", "test2");
         System.out.println(value);
     }
 
@@ -27,12 +32,20 @@ public class Nominee extends Person {
         z = rand.nextInt(10);
     }
 
+    public double getC() {
+        return c;
+    }
+
+    public int getZ() {
+        return z;
+    }
+
     /**
      * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award amount limit has specific default value for nominees)
      * @param name nominee's name
      */
     public Nominee (String name) {
-        super (name);
+        super(name);
     }
 
     /**
@@ -43,17 +56,6 @@ public class Nominee extends Person {
 
     public Nominee(String name, int nomineeAwardQuantityLimit, float nomineeAwardAmountLimit) {
         super(name, nomineeAwardQuantityLimit, nomineeAwardAmountLimit);
-        this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
-    }
-
-    @Override
-    public float getAwardAmountLimit() {
-        return nomineeAwardAmountLimit;
-    }
-
-    @Override
-    public void setAwardAmountLimit(float nomineeAwardAmountLimit) {
-        this.nomineeAwardAmountLimit = nomineeAwardAmountLimit;
     }
 
     /**
@@ -64,7 +66,24 @@ public class Nominee extends Person {
      *
      * @param award award that nominator is intending to give to nominee
      */
-    public void receiveAward(Award award) {
+//    public void receiveAward(Award award) {
+//        if (isEligible(award.getValue(), getAwardQuantityLimit(), getAwardAmountLimit())) {
+//            array.add(award);
+//            setAwardAmountLimit(getAwardAmountLimit() - award.getValue());
+//            setAwardQuantityLimit(getAwardQuantityLimit() - 1);
+//        } else if (getAwardQuantityLimit() > 0 && getAwardAmountLimit() < award.getValue()) {
+//            System.out.println("It's impossible to create an award that has value " + award.getValue() + " USD (more than nominee's balance)");
+//        } else {
+//            System.out.println("Award wasn't created due to reaching limit for the recipient");
+//        }
+//    }
+
+
+    public double calculateSoli(Award award) {
+        return (award.getSoli() < 0) ? NominationHelper.getQuantity(array,award.getValue(), z, c) : 0;
+    }
+
+    public void showAwardQuantityLimit() {
         switch (getAwardQuantityLimit()) {
             case 0:
                 System.out.println(this.getName() + " isn't able to receive any awards");
@@ -76,24 +95,7 @@ public class Nominee extends Person {
                 System.out.println(this.getName() + " is able to receive " + getAwardQuantityLimit() + " awards");
                 break;
         }
-        //if (getNomineeAwardQuantityLimit() > 0 && getNomineeAwardAmountLimit() >= award.getValue()) {
-        if (isEligible(award.getValue(),getAwardQuantityLimit(),getAwardAmountLimit()) == true) {
-            array.add(award);
-            if (award.getSoli() > 0) {
-                System.out.println("Nominee is " + getName() + "\n" + "Nominee's balance is " + getAwardAmountLimit() + "\n" + "Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
-            } else {
-                System.out.println("Nominee is " + getName() + "\n" + "Nominee's balance is " + getAwardAmountLimit() + "\n" + "SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
-                System.out.println("Quantity = " + NominationHelper.getQuantity(award.getValue(), z, c, NominationHelper.getPopulation(array)));
-            }
-            setAwardAmountLimit(getAwardAmountLimit() - award.getValue());
-            setAwardQuantityLimit(getAwardQuantityLimit() - 1);
-        } else if (getAwardQuantityLimit() > 0 && getAwardAmountLimit() < award.getValue()) {
-            System.out.println("It's impossible to create an award that has value " + award.getValue() + " USD (more than nominee's balance)");
-        } else {
-            System.out.println("Award wasn't created due to reaching limit for the recipient");
-        }
     }
-
     /**
      * Method 'canBeNominated' defines whether nominee is able to receive the award or not
      *
@@ -101,10 +103,7 @@ public class Nominee extends Person {
      * @return true if nominee's balance is higher than award value and award quantity limit
      */
     public boolean canBeNominated(Award award) {
-        if (getAwardQuantityLimit() > 0 && getAwardAmountLimit() >= award.getValue()) {
-            return true;
-        }
-        return false;
+        return getAwardQuantityLimit() > 0 && getAwardAmountLimit() >= award.getValue();
     }
 }
 

@@ -1,4 +1,4 @@
-package com.epam.javaTraining.globoforceTestProject;
+package com.epam.training.recognition.entity;
 
 /**
  * @author Viachaslau_Kavaliou

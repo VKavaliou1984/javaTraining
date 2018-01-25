@@ -1,4 +1,4 @@
-package com.epam.javaTraining.globoforceTestProject;
+package com.epam.training.recognition.entity;
 
 public abstract class Person {
     private String name;
@@ -11,7 +11,7 @@ public abstract class Person {
         this.awardAmountLimit = awardAmountLimit;
     }
 
-    public Person (String name) {
+         public Person(String name) {
         this.name = name;
     }
 
@@ -39,10 +39,9 @@ public abstract class Person {
         this.awardAmountLimit = awardAmountLimit;
     }
 
-    protected boolean isEligible (int value, int awardQuantityLimit,float awardAmountLimit) {
-        if (awardQuantityLimit > 0 && awardAmountLimit > value) {
-            return true;
-        }
-        return false;
+    public boolean isEligible(int value, int awardQuantityLimit, float awardAmountLimit) {
+        return (awardQuantityLimit > 0 && awardAmountLimit > value);
     }
+
+
 }

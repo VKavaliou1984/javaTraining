@@ -1,4 +1,4 @@
-package com.epam.javaTraining.introductionTask;
+package com.epam.training.task1;
 
 /**
  * Created by Viachaslau_Kavaliou on 13/12/2017.
