@@ -1,5 +1,7 @@
 package com.epam.training.recognition.entity;
 
+import java.util.ArrayList;
+
 /**
  * @author Viachaslau_Kavaliou
  * @version 1.0, 17-DEC-2017
@@ -7,29 +9,34 @@ package com.epam.training.recognition.entity;
 public class Award {
     private final int value;
     private float soli;
-    public int counter;
-
-    static {
-        System.out.println("Hello from Award class");
-    }
+    private ArrayList<Award> array = new ArrayList<Award>();
 
     /**
      * creating award without SOLI
+     *
      * @param value base value of the award that will be visible either for nominee or nominator
      */
     public Award(Integer value) {
         this.value = value;
-        counter++;
     }
 
     /**
      * creating award with SOLI
+     *
      * @param value base value of the award
-     * @param soli actual value of the awards that will be visible for nominee
+     * @param soli  actual value of the awards that will be visible for nominee
      */
     public Award(Integer value, Float soli) {
         this.value = value;
         this.soli = soli;
+    }
+
+    public ArrayList<Award> getArray() {
+        return array;
+    }
+
+    public void setArray(ArrayList<Award> array) {
+        this.array = array;
     }
 
     public int getValue() {

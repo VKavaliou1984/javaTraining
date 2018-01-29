@@ -3,15 +3,15 @@ package com.epam.training.recognition.entity;
 public abstract class Person {
     private String name;
     private int awardQuantityLimit = 10;
-    private float awardAmountLimit = 2000f;
+    private int awardAmountLimit = 2000;
 
-    public Person(String name, int awardQuantityLimit, float awardAmountLimit) {
+    public Person(String name, int awardQuantityLimit, int awardAmountLimit) {
         this.name = name;
         this.awardQuantityLimit = awardQuantityLimit;
         this.awardAmountLimit = awardAmountLimit;
     }
 
-         public Person(String name) {
+    public Person(String name) {
         this.name = name;
     }
 
@@ -31,17 +31,15 @@ public abstract class Person {
         this.awardQuantityLimit = awardQuantityLimit;
     }
 
-    public float getAwardAmountLimit() {
+    public int getAwardAmountLimit() {
         return awardAmountLimit;
     }
 
-    public void setAwardAmountLimit(float awardAmountLimit) {
+    public void setAwardAmountLimit(int awardAmountLimit) {
         this.awardAmountLimit = awardAmountLimit;
     }
 
-    public boolean isEligible(int value, int awardQuantityLimit, float awardAmountLimit) {
-        return (awardQuantityLimit > 0 && awardAmountLimit > value);
+    public boolean isEligible(int value) {
+        return true;
     }
-
-
 }
