@@ -40,6 +40,7 @@ public abstract class Person implements OperationsWithLimit {
         this.awardAmountLimit = awardAmountLimit;
     }
 
+
     public boolean isEligible(int value) {
         return true;
     }

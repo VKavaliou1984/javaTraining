@@ -3,7 +3,6 @@ package com.epam.training.recognition.service;
 import com.epam.training.recognition.entity.Award;
 import com.epam.training.recognition.entity.Nominator;
 import com.epam.training.recognition.entity.Nominee;
-import com.epam.training.recognition.entity.OperationsWithLimit;
 import com.epam.training.recognition.view.Runner;
 
 /**
