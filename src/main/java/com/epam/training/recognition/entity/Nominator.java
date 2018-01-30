@@ -27,10 +27,9 @@ public class Nominator extends Person {
         super(name, awardQuantityLimit, awardAmountLimit);
     }
 
-    
     public boolean isEligible(int value, Nominee nominee) {
-        super.isEligible(value);
-        return ((getAwardQuantityLimit() > 0 && getAwardAmountLimit() > value) && (nominee.getAwardQuantityLimit() > 0 && nominee.getAwardAmountLimit() > value));
+    super.isEligible(value);
+        return ((getAwardQuantityLimit() > 0 && getAwardAmountLimit() > value)&&(nominee.getAwardQuantityLimit()>0 && nominee.getAwardAmountLimit()>value));
     }
 }
 

@@ -1,5 +1,4 @@
 package com.epam.training.recognition.entity;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -57,7 +56,7 @@ public class Nominee extends Person {
     }
 
     @Override
-    public boolean isEligible(int value) {
+    public boolean isEligible (int value) {
         super.isEligible(value);
         return (getAwardQuantityLimit() > 0 && getAwardAmountLimit() > value);
     }

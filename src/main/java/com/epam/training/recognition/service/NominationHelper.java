@@ -38,8 +38,8 @@ public class NominationHelper {
     public static int getPopulation(ArrayList<Award> array) {
         int population = 1;
         for (Award award : array) {
-            population++;
-        }
-        return population;
+    population++;
+            }
+                return population;
     }
 }

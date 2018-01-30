@@ -3,6 +3,7 @@ package com.epam.training.recognition.view;
 import com.epam.training.recognition.entity.Award;
 import com.epam.training.recognition.entity.Nominator;
 import com.epam.training.recognition.entity.Nominee;
+import com.epam.training.recognition.entity.Person;
 import com.epam.training.recognition.service.NominationHelper;
 import com.epam.training.recognition.service.NominationService;
 
@@ -38,12 +39,14 @@ public class Runner {
         Nominee nominee1 = new Nominee("Siarhei", 10, 10000);
         Nominee nominee2 = new Nominee("Greg", 10, 500000);
         Nominee nominee3 = new Nominee("Stephen", 5, 20000);
+        Nominee nominee4 = new Nominee("Yuliya");
         Award award1 = new Award(500);
         Award award2 = new Award(50, 500f);
         Award award3 = new Award(100);
         Nominator nominator1 = new Nominator("John", 3, 10000);
         Nominator nominator2 = new Nominator("Aleh", 10, 10000);
         Nominator nominator3 = new Nominator("Jack", 10, 50000);
+        Nominator nominator4 = new Nominator("Elena");
 
         nominationService.nominate(award1, nominee1, nominator1);
         nominationService.nominate(award2, nominee1, nominator1);

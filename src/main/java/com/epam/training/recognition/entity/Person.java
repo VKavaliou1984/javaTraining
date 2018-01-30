@@ -1,12 +1,12 @@
 package com.epam.training.recognition.entity;
 
-public abstract class Person {
+public abstract class Person implements OperationsWithLimit {
     private String name;
     private int awardQuantityLimit = 10;
     private int awardAmountLimit = 2000;
 
     public Person(String name, int awardQuantityLimit, int awardAmountLimit) {
-        this.name = name;
+        this(name);
         this.awardQuantityLimit = awardQuantityLimit;
         this.awardAmountLimit = awardAmountLimit;
     }
@@ -14,6 +14,7 @@ public abstract class Person {
     public Person(String name) {
         this.name = name;
     }
+
 
     public String getName() {
         return name;
