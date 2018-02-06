@@ -1,9 +1,5 @@
 package com.epam.training.recognition.service;
-
-import com.epam.training.recognition.entity.Award;
-import com.epam.training.recognition.entity.Nominator;
-import com.epam.training.recognition.entity.Nominee;
-import com.epam.training.recognition.view.Runner;
+import com.epam.training.recognition.entity.*;
 
 /**
  * Created by Viachaslau_Kavaliou on 23/01/2018.
@@ -21,16 +17,32 @@ public class NominationService {
      * @param nominator - nominator, the person who wants to recongize another person
      */
     public void nominate(Award award, Nominee nominee, Nominator nominator) {
-        Runner runner = new Runner();
-        if (nominator.isEligible(award.getValue(), nominee)) {
-            runner.nominationStatus(0);
+        Nomination nomination = new Nomination (nominee.getName(),nominator.getName(),award.getValue());
+        if ((nominator.isEligible(award.getValue()) && (nominee.isEligible(award.getValue())))) {
+            nomination.setStatus(0);
+            nomination.printStatus();
             nominator.setAwardQuantityLimit(nominator.getAwardQuantityLimit() - 1);
             nominator.setAwardAmountLimit(nominator.getAwardAmountLimit() - award.getValue());
-            runner.printBalance(true, nominator.getAwardQuantityLimit(), nominator.getAwardAmountLimit(), nominator.getName());
+            printBalance(true, nominator.getAwardQuantityLimit(), nominator.getAwardAmountLimit(), nominator.getName());
             ReceivingService receivingService = new ReceivingService();
             receivingService.receiveAward(award, nominee);
-        } else if (!nominator.isEligible(award.getValue(), nominee) && (nominee.isEligible(award.getValue()))) {
-            runner.nominationStatus(1);
-        } else runner.nominationStatus(2);
+        } else if (!nominator.isEligible(award.getValue()) && (nominee.isEligible(award.getValue()))) {
+            nomination.setStatus(1);
+            nomination.printStatus();
+        } else {
+            nomination.setStatus(2);
+            nomination.printStatus();
+        }
+    }
+
+    public static void printBalance(boolean isNominator, int getAwardQuantityLimit, float getAwardAmountLimit, String name) {
+        if (isNominator) {
+            System.out.println(name + " (nominator) has balance " + getAwardAmountLimit + " USD");
+            System.out.println("Nominator is able to give " + getAwardQuantityLimit + " awards");
+        } else {
+            System.out.println(name + " (nominee) has balance " + getAwardAmountLimit + " USD");
+            System.out.println("Nominee is able to receive " + getAwardQuantityLimit + " awards");
+            System.out.println("================================================");
+        }
     }
 }

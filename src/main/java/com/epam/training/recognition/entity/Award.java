@@ -9,15 +9,19 @@ import java.util.ArrayList;
 public class Award {
     private final int value;
     private float soli;
+    private String type;
+    private int id;
     private ArrayList<Award> array = new ArrayList<Award>();
+
 
     /**
      * creating award without SOLI
      *
      * @param value base value of the award that will be visible either for nominee or nominator
      */
-    public Award(Integer value) {
+    public Award( Integer value, String type) {
         this.value = value;
+        this.type = type;
     }
 
     /**
@@ -26,9 +30,10 @@ public class Award {
      * @param value base value of the award
      * @param soli  actual value of the awards that will be visible for nominee
      */
-    public Award(Integer value, Float soli) {
-        this.value = value;
+    public Award(Integer value, Float soli, String type) {
+        this(value, type);
         this.soli = soli;
+
     }
 
     public ArrayList<Award> getArray() {
@@ -49,6 +54,22 @@ public class Award {
 
     public float getSoli() {
         return soli;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
 

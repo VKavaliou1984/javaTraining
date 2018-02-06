@@ -6,6 +6,9 @@ package com.epam.training.recognition.entity;
  */
 
 public class Nominator extends Person {
+    public String firstName;
+    public String lastName;
+
 
     /**
      * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award quantity limit has specific default value for nominators)
@@ -27,9 +30,30 @@ public class Nominator extends Person {
         super(name, awardQuantityLimit, awardAmountLimit);
     }
 
-    public boolean isEligible(int value, Nominee nominee) {
-    super.isEligible(value);
-        return ((getAwardQuantityLimit() > 0 && getAwardAmountLimit() > value)&&(nominee.getAwardQuantityLimit()>0 && nominee.getAwardAmountLimit()>value));
+    public Nominator (String firstName, String lastName) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String setName (String firstName, String lastName) {
+        return firstName + lastName;
     }
 }
 

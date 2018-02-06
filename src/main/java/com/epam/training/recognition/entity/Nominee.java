@@ -55,10 +55,5 @@ public class Nominee extends Person {
         super(name, nomineeAwardQuantityLimit, nomineeAwardAmountLimit);
     }
 
-    @Override
-    public boolean isEligible (int value) {
-        super.isEligible(value);
-        return (getAwardQuantityLimit() > 0 && getAwardAmountLimit() > value);
-    }
 }
 

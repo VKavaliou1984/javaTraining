@@ -1,7 +1,9 @@
 package com.epam.training.recognition.service;
 
 import com.epam.training.recognition.entity.Award;
+import com.epam.training.recognition.entity.Nominator;
 import com.epam.training.recognition.entity.Nominee;
+import com.epam.training.recognition.entity.Person;
 import com.epam.training.recognition.view.Runner;
 
 /**
@@ -19,14 +21,24 @@ public class ReceivingService {
      * @param nominee - eligible nominee who will receive a recognition
      */
     public void receiveAward(Award award, Nominee nominee) {
-        Runner runner = new Runner();
-        runner.showSoli(award.getSoli(), nominee, award);
+        showSoli(nominee, award);
         nominee.getAllAwards().add(award);
         if (award.getSoli() <= 0) {
             nominee.getAwardsWitoutSoli().add(award);
         }
         nominee.setAwardAmountLimit(nominee.getAwardAmountLimit() - award.getValue());
         nominee.setAwardQuantityLimit(nominee.getAwardQuantityLimit() - 1);
-        runner.printBalance(false, nominee.getAwardQuantityLimit(), nominee.getAwardAmountLimit(), nominee.getName());
+        NominationService.printBalance(false, nominee.getAwardQuantityLimit(), nominee.getAwardAmountLimit(), nominee.getName());
     }
+
+    public void showSoli(Nominee nominee, Award award) {
+        if (award.getSoli() > 0) {
+            System.out.println("Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
+        } else {
+            System.out.println("SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
+            System.out.println("Quantity = " + NominationHelper.getQuantity(nominee.getAwardsWitoutSoli(), award.getValue(), nominee.getZ(), nominee.getC()));
+        }
+    }
+
 }
+
