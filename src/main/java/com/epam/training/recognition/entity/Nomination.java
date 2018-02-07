@@ -4,33 +4,33 @@ package com.epam.training.recognition.entity;
  * Created by Viachaslau_Kavaliou on 02/02/2018.
  */
 public class Nomination {
-    private String nominee;
-    private String nominator;
-    private int award;
+    private Nominee nominee;
+    private Nominator nominator;
+    private Award award;
     private int status;
 
 
-    public String getNominee() {
+    public Nominee getNominee() {
         return nominee;
     }
 
-    public void setNominee(String nominee) {
+    public void setNominee(Nominee nominee) {
         this.nominee = nominee;
     }
 
-    public String getNominator() {
+    public Nominator getNominator() {
         return nominator;
     }
 
-    public void setNominator(String nominator) {
+    public void setNominator(Nominator nominator) {
         this.nominator = nominator;
     }
 
-    public int getAward() {
+    public Award getAward() {
         return award;
     }
 
-    public void setAward(int award) {
+    public void setAward(Award award) {
         this.award = award;
     }
 
@@ -42,24 +42,10 @@ public class Nomination {
         this.status = status;
     }
 
-    public Nomination(String nominee, String nominator, int award) {
+    public Nomination(Nominee nominee, Nominator nominator, Award award) {
         this.nominee = nominee;
         this.nominator = nominator;
         this.award = award;
     }
-
-    public void printStatus() {
-        switch (status) {
-            case 1:
-                System.out.println("Nomination can't be placed due to nominator's restrictions");
-                break;
-            case 2:
-                System.out.println("Nomination can't be placed due to nominee's restrictions");
-                break;
-            default:
-                System.out.println("Nomination has been placed successfully");
-                break;
-        }
-            }
 
 }

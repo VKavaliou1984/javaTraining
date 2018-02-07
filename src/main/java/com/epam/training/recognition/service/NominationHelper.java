@@ -42,4 +42,18 @@ public class NominationHelper {
             }
                 return population;
     }
+
+    public static void printStatus(int status) {
+        switch (status) {
+            case 1:
+                System.out.println("Nomination can't be placed due to nominator's restrictions");
+                break;
+            case 2:
+                System.out.println("Nomination can't be placed due to nominee's restrictions");
+                break;
+            default:
+                System.out.println("Nomination has been placed successfully");
+                break;
+        }
+    }
 }

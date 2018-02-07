@@ -16,11 +16,10 @@ public class NominationService {
      * @param nominee   - nominee whom nominator wants to recognize
      * @param nominator - nominator, the person who wants to recongize another person
      */
-    public void nominate(Award award, Nominee nominee, Nominator nominator) {
-        Nomination nomination = new Nomination (nominee.getName(),nominator.getName(),award.getValue());
+    public Nomination nominate(Award award, Nominee nominee, Nominator nominator) {
+        Nomination nomination = new Nomination (nominee,nominator,award);
         if ((nominator.isEligible(award.getValue()) && (nominee.isEligible(award.getValue())))) {
             nomination.setStatus(0);
-            nomination.printStatus();
             nominator.setAwardQuantityLimit(nominator.getAwardQuantityLimit() - 1);
             nominator.setAwardAmountLimit(nominator.getAwardAmountLimit() - award.getValue());
             printBalance(true, nominator.getAwardQuantityLimit(), nominator.getAwardAmountLimit(), nominator.getName());
@@ -28,11 +27,10 @@ public class NominationService {
             receivingService.receiveAward(award, nominee);
         } else if (!nominator.isEligible(award.getValue()) && (nominee.isEligible(award.getValue()))) {
             nomination.setStatus(1);
-            nomination.printStatus();
         } else {
             nomination.setStatus(2);
-            nomination.printStatus();
         }
+        return nomination;
     }
 
     public static void printBalance(boolean isNominator, int getAwardQuantityLimit, float getAwardAmountLimit, String name) {

@@ -11,11 +11,33 @@ public class Nominee extends Person {
     private final int z;
     private ArrayList<Award> allAwards = new ArrayList<Award>();
     private ArrayList<Award> awardsWitoutSoli = new ArrayList<Award>();
+    private int awardAmountLimit = 10000;
+
 
     {
         Random rand = new Random();
         c = rand.nextInt(5) + rand.nextDouble();
         z = rand.nextInt(10);
+    }
+
+    /**
+     * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award amount limit has specific default value for nominees)
+     *
+     * @param name nominee's name
+     */
+    public Nominee(String name) {
+        super(name);
+    }
+
+    /**
+     * @param name                      nominee's name
+     * @param nomineeAwardAmountLimit   award amount limit for nominee
+     * @param nomineeAwardQuantityLimit award quantity limit for nominee (how many award can be received by nominee)
+     */
+
+    public Nominee(String name, int awardQuantityLimit, int awardAmountLimit) {
+        super(name, awardQuantityLimit);
+        this.awardAmountLimit = awardAmountLimit;
     }
 
     public double getC() {
@@ -36,24 +58,21 @@ public class Nominee extends Person {
     }
 
 
-    /**
-     * This constructor is used if award quantity and award amount limits for nominator are default for nominee (award amount limit has specific default value for nominees)
-     *
-     * @param name nominee's name
-     */
-    public Nominee(String name) {
-        super(name);
+    public int getAwardAmountLimit() {
+        return awardAmountLimit;
+    }
+
+    public void setAwardAmountLimit(int awardAmountLimit) {
+        this.awardAmountLimit = awardAmountLimit;
     }
 
     /**
-     * @param name                      nominee's name
-     * @param nomineeAwardAmountLimit   award amount limit for nominee
-     * @param nomineeAwardQuantityLimit award quantity limit for nominee (how many award can be received by nominee)
+     * The method is overloaded -> added additional condition that checks if nominee's balance allows him to receive award with this value
+     * @param value award value
+     * @return return true if nominee hasn't reached limit by his quantitiy limit (>0) and his balance allows to receive award with this value
      */
-
-    public Nominee(String name, int nomineeAwardQuantityLimit, int nomineeAwardAmountLimit) {
-        super(name, nomineeAwardQuantityLimit, nomineeAwardAmountLimit);
+    public boolean isEligible(int value) {
+        return getAwardQuantityLimit() > 0 && getAwardAmountLimit() >= value;
     }
-
 }
 

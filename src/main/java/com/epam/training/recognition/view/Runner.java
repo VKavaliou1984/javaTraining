@@ -32,15 +32,16 @@ public class Runner {
 
         NominationService nominationService = new NominationService();
 //        Nominee nominee1 = new Nominee(sc.next(), 1, 50000f);
-        Person nominee1 = new Nominee("Siarhei", 10, 10000);
+        Person nominee1 = new Nominee("Siarhei");
         Person nominee2 = new Nominee("Greg", 10, 500000);
         Person nominee3 = new Nominee("Stephen", 5, 20000);
         Person nominee4 = new Nominee("Yuliya");
         Award award1 = new Award(500,495.0f, "cash");
         Award award2 = new Award(50, "non-cash");
         Award award3 = new Award(100, "cash");
+        Award award4 = new Award (10000000, "cash");
         Person nominator1 = new Nominator("John", 10, 10000);
-        Person nominator2 = new Nominator("Aleh", 10, 10000);
+        Person nominator2 = new Nominator("Aleh");
         Person nominator3 = new Nominator("Jack", 10, 50000);
         Person nominator4 = new Nominator("Elena");
 
@@ -51,19 +52,20 @@ public class Runner {
         nominationService.nominate(award2, (Nominee)nominee3, (Nominator) nominator2);
         nominationService.nominate(award2, (Nominee) nominee1, (Nominator) nominator1);
 
-        Nomination nomination1 = new Nomination(nominator1.getName(),nominee1.getName(),award1.getValue());
-        nomination1.setStatus(0);
-        nomination1.printStatus();
+        Nomination nomination1 = nominationService.nominate(award1, (Nominee) nominee1, (Nominator) nominator2);
+        NominationHelper.printStatus(nomination1.getStatus());
 
 
-        System.out.println(nominator4.getClass().getName());
+        Nomination nomination3 = nominationService.nominate(award3, (Nominee) nominee2, (Nominator) nominator3);
+        NominationHelper.printStatus(nomination3.getStatus());
 
-        nominator4.setName("Slava");
-        System.out.println(nominator4.getName());
-        Person nominator5 = new Nominator("Stephen", "Johnson");
+        Nomination nomination4 = nominationService.nominate(award4, (Nominee) nominee2, (Nominator) nominator3);
+        NominationHelper.printStatus(nomination4.getStatus());
 
 
-
+//      Examples how works method toString for Nominator class (where it is overriden) and fpr Nominee class (be default)
+        System.out.println(nominator1.toString());
+        System.out.println(nominee1.toString());
     }
     }
 

@@ -5,17 +5,14 @@ import java.awt.*;
 public abstract class Person implements OperationsWithLimit {
     protected String name;
     private int awardQuantityLimit = 10;
-    private int awardAmountLimit = 2000;
+//    private int awardAmountLimit = 2000;
 
-
-    public Person () {}
-
-
-    public Person(String name, int awardQuantityLimit, int awardAmountLimit) {
+    public Person(String name, int awardQuantityLimit) {
         this(name);
         this.awardQuantityLimit = awardQuantityLimit;
-        this.awardAmountLimit = awardAmountLimit;
+//        this.awardAmountLimit = awardAmountLimit;
     }
+
 
     public Person(String name) {
         this.name = name;
@@ -38,16 +35,16 @@ public abstract class Person implements OperationsWithLimit {
         this.awardQuantityLimit = awardQuantityLimit;
     }
 
-    public int getAwardAmountLimit() {
-        return awardAmountLimit;
-    }
+//    public int getAwardAmountLimit() {
+//        return awardAmountLimit;
+//    }
+//
+//    public void setAwardAmountLimit(int awardAmountLimit) {
+//        this.awardAmountLimit = awardAmountLimit;
+//    }
 
-    public void setAwardAmountLimit(int awardAmountLimit) {
-        this.awardAmountLimit = awardAmountLimit;
-    }
 
-
-    public boolean isEligible(int value) {
-        return getAwardQuantityLimit() > 0 && getAwardAmountLimit() >= value;
+    public boolean isEligible() {
+        return getAwardQuantityLimit() > 0;
     }
 }
