@@ -23,9 +23,6 @@ public class ReceivingService {
     public void receiveAward(Award award, Nominee nominee) {
         showSoli(nominee, award);
         nominee.getAllAwards().add(award);
-        if (award.getSoli() <= 0) {
-            nominee.getAwardsWitoutSoli().add(award);
-        }
         nominee.setAwardAmountLimit(nominee.getAwardAmountLimit() - award.getValue());
         nominee.setAwardQuantityLimit(nominee.getAwardQuantityLimit() - 1);
         NominationService.printBalance(false, nominee.getAwardQuantityLimit(), nominee.getAwardAmountLimit(), nominee.getName());
@@ -36,7 +33,7 @@ public class ReceivingService {
             System.out.println("Due to SOLI index, the actual amount of the award is " + award.getSoli() + " USD. It is " + award.getSoli() / award.getValue() * 100 + "% of the award amount.");
         } else {
             System.out.println("SOLI index isn't applied for this award. The actual amount of the award is " + award.getValue() + " USD.");
-            System.out.println("Quantity = " + NominationHelper.getQuantity(nominee.getAwardsWitoutSoli(), award.getValue(), nominee.getZ(), nominee.getC()));
+            System.out.println("Quantity = " + NominationHelper.getQuantity(nominee.getAllAwards(), award.getValue(), nominee.getZ(), nominee.getC()));
         }
     }
 

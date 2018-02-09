@@ -3,6 +3,8 @@ package com.epam.training.recognition.service;
 import com.epam.training.recognition.entity.Award;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Viachaslau_Kavaliou
@@ -37,10 +39,14 @@ public class NominationHelper {
 
     public static int getPopulation(ArrayList<Award> array) {
         int population = 1;
+//        population += array.size();
+        System.out.println(array.size());
         for (Award award : array) {
-    population++;
+            if (award.getSoli() <= 0) {
+                population++;
             }
-                return population;
+        }
+        return population++;
     }
 
     public static void printStatus(int status) {
@@ -56,4 +62,48 @@ public class NominationHelper {
                 break;
         }
     }
-}
+
+//    @Override
+//    public String toString() {
+//        return award;
+//    }
+
+    public static void printAwards(ArrayList<Award> array) {
+        System.out.println("All awards of the array:");
+        for (Award award : array) {
+            System.out.println(
+                    award.getValue() + " USD. ID: " + array.indexOf(award));
+        }
+        System.out.println("Cash awards:");
+        for (Award award : array) {
+            if (award.getType().contains("Cash")) {
+                System.out.println(
+                        award.getValue() + " USD. ID: " + array.indexOf(award));
+            }
+        }
+        System.out.println("Non-cash awards:");
+        for (Award award : array) {
+            if (award.getType().contains("Non-cash")) {
+                System.out.println(
+                        award.getValue()+ " USD. ID: " + array.indexOf(award));
+            }
+        }
+        System.out.println("Zero-value awards:");
+        for (Award award : array) {
+            if (award.getType().contains("Zero-value")) {
+                System.out.println("ID: " + array.indexOf(award));
+            }
+        }
+    }
+
+
+    public static void printAwards2(Award... array) {
+        System.out.println("3 dots:");
+        for (Award award : array) {
+                System.out.println(
+                        award.getValue());
+            }
+        }
+    }
+
+
