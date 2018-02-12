@@ -1,6 +1,5 @@
 package com.epam.training.recognition.entity;
 
-import com.epam.training.recognition.service.AwardConfigurationException;
 import com.epam.training.recognition.view.Type;
 
 /**

@@ -1,4 +1,4 @@
-package com.epam.training.recognition.service;
+package com.epam.training.recognition.exception;
 
 /**
  * Created by Viachaslau_Kavaliou on 11/02/2018.

@@ -1,14 +1,11 @@
 package com.epam.training.recognition.view;
 import com.epam.training.recognition.entity.*;
-import com.epam.training.recognition.service.AwardConfigurationException;
+import com.epam.training.recognition.exception.AwardConfigurationException;
 import com.epam.training.recognition.service.AwardHelper;
 import com.epam.training.recognition.service.NominationHelper;
 import com.epam.training.recognition.service.NominationService;
-import com.epam.training.recognition.view.Type;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Scanner;
 
 /**
  * @author Viachaslau_Kavaliou
