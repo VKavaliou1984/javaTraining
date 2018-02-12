@@ -1,8 +1,7 @@
 package com.epam.training.recognition.entity;
 
-import com.epam.training.recognition.service.NominationHelper;
-
-import java.util.ArrayList;
+import com.epam.training.recognition.service.AwardConfigurationException;
+import com.epam.training.recognition.view.Type;
 
 /**
  * @author Viachaslau_Kavaliou
@@ -11,15 +10,14 @@ import java.util.ArrayList;
 public class Award {
     private final int value;
     private float soli;
-    private String type;
-    private int id;
+    private Type type;
 
     /**
      * creating award without SOLI
      *
      * @param value base value of the award that will be visible either for nominee or nominator
      */
-    public Award( Integer value, String type) {
+    public Award(Integer value, Type type) {
         this.value = value;
         this.type = type;
     }
@@ -30,7 +28,7 @@ public class Award {
      * @param value base value of the award
      * @param soli  actual value of the awards that will be visible for nominee
      */
-    public Award(Integer value, Float soli, String type) {
+    public Award(Integer value, Float soli, Type type) {
         this(value, type);
         this.soli = soli;
 
@@ -45,23 +43,15 @@ public class Award {
     }
 
     public float getSoli() {
-        return soli;
+            return soli;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Override
@@ -73,16 +63,12 @@ public class Award {
 
         if (value != award.value) return false;
         if (Float.compare(award.soli, soli) != 0) return false;
-        if (id != award.id) return false;
         return type.equals(award.type);
     }
 
     @Override
     public int hashCode() {
-        int result = value;
-        result = 31 * result + (soli != +0.0f ? Float.floatToIntBits(soli) : 0);
-        result = 31 * result + type.hashCode();
-        result = 31 * result + id;
+        int result = (getValue() + getType().hashCode() + (int) getSoli());
         return result;
     }
 }

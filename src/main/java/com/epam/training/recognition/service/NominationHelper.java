@@ -1,10 +1,9 @@
 package com.epam.training.recognition.service;
 
 import com.epam.training.recognition.entity.Award;
+import com.epam.training.recognition.view.Type;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * @author Viachaslau_Kavaliou
@@ -37,7 +36,7 @@ public class NominationHelper {
      * @return amount of awards without soli
      */
 
-    public static int getPopulation(ArrayList<Award> array) {
+    public static int getPopulation(ArrayList<Award> array)  {
         int population = 1;
 //        population += array.size();
         System.out.println(array.size());
@@ -68,33 +67,44 @@ public class NominationHelper {
 //        return award;
 //    }
 
-    public static void printAwards(ArrayList<Award> array) {
-        System.out.println("All awards of the array:");
+
+    public static void printAwards(ArrayList<Award> array, Type type){
+        System.out.println(type + " awards of the array:");
         for (Award award : array) {
-            System.out.println(
-                    award.getValue() + " USD. ID: " + array.indexOf(award));
-        }
-        System.out.println("Cash awards:");
-        for (Award award : array) {
-            if (award.getType().contains("Cash")) {
-                System.out.println(
-                        award.getValue() + " USD. ID: " + array.indexOf(award));
-            }
-        }
-        System.out.println("Non-cash awards:");
-        for (Award award : array) {
-            if (award.getType().contains("Non-cash")) {
-                System.out.println(
-                        award.getValue()+ " USD. ID: " + array.indexOf(award));
-            }
-        }
-        System.out.println("Zero-value awards:");
-        for (Award award : array) {
-            if (award.getType().contains("Zero-value")) {
-                System.out.println("ID: " + array.indexOf(award));
+            if (award.getType() == type) {
+                switch (award.getType()) {
+                    case CASH:
+                    case NON_CASH:
+                    case ZERO_VALUE:
+                        System.out.println(
+                                award.getValue() + " USD. ID: " + array.indexOf(award));
+                        break;
+                }
             }
         }
     }
+
+
+//        System.out.println("Cash awards:");
+//        for (Award award : array) {
+//            if (award.getType().contains("Cash")) {
+//                System.out.println(
+//                        award.getValue() + " USD. ID: " + array.indexOf(award));
+//            }
+//        }
+//        System.out.println("Non-cash awards:");
+//        for (Award award : array) {
+//            if (award.getType().contains("Non-cash")) {
+//                System.out.println(
+//                        award.getValue()+ " USD. ID: " + array.indexOf(award));
+//            }
+//        }
+//        System.out.println("Zero-value awards:");
+//        for (Award award : array) {
+//            if (award.getType().contains("Zero-value")) {
+//                System.out.println("ID: " + array.indexOf(award));
+//            }
+//
 
 
     public static void printAwards2(Award... array) {

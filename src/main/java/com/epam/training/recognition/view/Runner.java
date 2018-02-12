@@ -1,8 +1,10 @@
 package com.epam.training.recognition.view;
-
 import com.epam.training.recognition.entity.*;
+import com.epam.training.recognition.service.AwardConfigurationException;
+import com.epam.training.recognition.service.AwardHelper;
 import com.epam.training.recognition.service.NominationHelper;
 import com.epam.training.recognition.service.NominationService;
+import com.epam.training.recognition.view.Type;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,6 +14,7 @@ import java.util.Scanner;
  * @author Viachaslau_Kavaliou
  * @version 1.0, 17-DEC-2017
  */
+
 public class Runner {
     private ArrayList<Award> array = new ArrayList<Award>();
 
@@ -23,7 +26,7 @@ public class Runner {
      *
      * @param args array of String objects
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AwardConfigurationException {
 
         NominationService nominationService = new NominationService();
 //        Nominee nominee1 = new Nominee(sc.next(), 1, 50000f);
@@ -31,16 +34,17 @@ public class Runner {
         Person nominee2 = new Nominee("Greg", 10, 500000);
         Person nominee3 = new Nominee("Stephen", 5, 20000);
         Person nominee4 = new Nominee("Yuliya");
-        Award award1 = new Award(500, "Cash");
-        Award award2 = new Award(50, "Cash");
-        Award award3 = new Award(0, "Zero-value");
-        Award award4 = new Award (10000000, "Cash");
-        Award award5 = new Award (0, "Zero-value");
-        Award award6 = new Award (50, "Non-cash");
-        Award award7 = new Award (1050, "Non-cash");
-        Award award8 = new Award (100, "Cash");
-        Award award9 = new Award (300, "Cash");
-        Award award10 = new Award (300, "Non-cash");
+        Award award1 = new Award(500,1000f,Type.CASH);
+        Award award2 = new Award(50, Type.CASH);
+        Award award3 = new Award(0, Type.NON_CASH);
+        Award award4 = new Award (10000000, Type.CASH);
+        Award award5 = new Award (0, Type.ZERO_VALUE);
+        Award award6 = new Award (50, Type.NON_CASH);
+        Award award7 = new Award (1050,Type.NON_CASH);
+        Award award8 = new Award (100, Type.CASH);
+        Award award9 = new Award (300, Type.CASH);
+        Award award10 = new Award (300, Type.NON_CASH);
+        Award award11 = new Award (500,Type.ZERO_VALUE);
 
 
 
@@ -81,7 +85,8 @@ public class Runner {
         runner.getArray().add(award7);
         runner.getArray().add(award8);
 
-        NominationHelper.printAwards(runner.getArray());
+        NominationHelper.printAwards(runner.getArray(), Type.NON_CASH);
+
         NominationHelper.printAwards2(award1,award2,award3,award4, award5, award6,award7,award8,award9, award10);
         NominationHelper.printAwards2(award1,award3);
 
@@ -90,6 +95,10 @@ public class Runner {
         System.out.println(award3.equals(award5));
         System.out.println(award2.equals(award6));
 
+        AwardHelper awardHelper = new AwardHelper();
+        awardHelper.checkSoli(award1.getValue(), award1.getSoli());
+
+        awardHelper.checkAwardType(award3.getValue(),award3.getType());
 
     }
     }
